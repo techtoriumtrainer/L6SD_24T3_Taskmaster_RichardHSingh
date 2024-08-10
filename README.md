@@ -25,18 +25,18 @@ Phase 3 of the app. Repurposing my a task tracking application using .NET MAUI w
 
 # Required SQL NuGet Packages
 There are a number of NuGet packages with similar names so please use the following packages that have these attributes:<br>
-<h5>First Package</h5>
+<h4>First Package</h4>
 • <strong>ID: </strong> sqlite-net-pcl<br>
 • <strong>Authors:</strong>  SQLite-net<br>
 • <strong>Owners:</strong>  praeclarum
 <br>
-<h5>Second Package</h5>
+<h4>Second Package</h4>
 <strong>ID: </strong> SQLitePCLRaw.bundle_green<br>
 <strong>Version:</strong>  >= 2.1.0<br>
 <strong>Authors</strong> : Eric Sink<br>
 <strong>Owners:</strong>  Eric Sink
 <br>
-<h5>Third Package</h5>
+<h4>Third Package</h4>
 • <strong>ID: </strong>  CommunityToolkit.Mvvm<br>
 • <strong>Authors:</strong> Microsoft<br>
 • <strong>Owners:</strong> Microsoft<br>
