@@ -1,7 +1,7 @@
 # .Net MAUI TaskNoter App Privacy Policy
 Phase 3 of the app. Repurposing my a task tracking application using .NET MAUI with privacy policy integrated so that user needs to agreed to it before being able to use the application
 
-<h5>The application will need to contain these functionalities listed:</h5><br>
+<h5>The application will need to contain these functionalities listed:</h5>
 • SQL integration<br>
 • Ability to create tasks<br>
 • Tasks will need to be updated and deleted<br>
@@ -10,7 +10,7 @@ Phase 3 of the app. Repurposing my a task tracking application using .NET MAUI w
 • Task progression based on tasks completed vs total tasks<br>
 • Visual representation of completed tasks (strike out, tick box) 
 <br><br>
-<h5>The Privacy Principles page should be professional, and must include the following:</h5><br>
+<h5>The Privacy Principles page should be professional, and must include the following:</h5>
 • Introduction<br>
 • Information we collect:<br>
 &nbsp; &nbsp; ○ Personal Data<br>
