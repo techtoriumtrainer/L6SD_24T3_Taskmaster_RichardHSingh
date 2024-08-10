@@ -1,7 +1,7 @@
 # .Net MAUI TaskNoter App Privacy Policy
-Phse 3 of the app.Repurposing my a task tracking application using .NET MAUI with privacy policy integrated so that user needs to agreed to it before being able to use the application
+Phase 3 of the app. Repurposing my a task tracking application using .NET MAUI with privacy policy integrated so that user needs to agreed to it before being able to use the application
 
-The application will need to contain these functionalities listed:<br>
+<h5>The application will need to contain these functionalities listed:</h5><br>
 • SQL integration<br>
 • Ability to create tasks<br>
 • Tasks will need to be updated and deleted<br>
@@ -10,7 +10,7 @@ The application will need to contain these functionalities listed:<br>
 • Task progression based on tasks completed vs total tasks<br>
 • Visual representation of completed tasks (strike out, tick box) 
 <br><br>
-The Privacy Principles page should be professional, and must include the following:<br>
+<h5>The Privacy Principles page should be professional, and must include the following:</h5><br>
 • Introduction<br>
 • Information we collect:<br>
 &nbsp; &nbsp; ○ Personal Data<br>
@@ -25,18 +25,18 @@ The Privacy Principles page should be professional, and must include the followi
 
 # Required SQL NuGet Packages
 There are a number of NuGet packages with similar names so please use the following packages that have these attributes:<br>
-<h3>First Package</h3>
+<h5>First Package</h5>
 • <strong>ID: </strong> sqlite-net-pcl<br>
 • <strong>Authors:</strong>  SQLite-net<br>
 • <strong>Owners:</strong>  praeclarum
 <br>
-<h3>Second Package</h3>
+<h5>Second Package</h5>
 <strong>ID: </strong> SQLitePCLRaw.bundle_green<br>
 <strong>Version:</strong>  >= 2.1.0<br>
 <strong>Authors</strong> : Eric Sink<br>
 <strong>Owners:</strong>  Eric Sink
 <br>
-<h3>Third Package</h3>
+<h5>Third Package</h5>
 • <strong>ID: </strong>  CommunityToolkit.Mvvm<br>
 • <strong>Authors:</strong> Microsoft<br>
 • <strong>Owners:</strong> Microsoft<br>
