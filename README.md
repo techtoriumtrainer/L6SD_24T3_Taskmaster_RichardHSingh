@@ -13,8 +13,8 @@ The application will need to contain these functionalities listed:<br>
 The Privacy Principles page should be professional, and must include the following:<br>
 • Introduction<br>
 • Information we collect:<br>
-&nbsp; • Personal Data<br>
-&nbsp; • Task Data<br>
+&nbsp; &nbsp; ○ Personal Data<br>
+&nbsp; &nbsp; ○ Task Data<br>
 • How we use Information<br>
 • Disclosure of Information<br>
 • Security of Information<br>
@@ -29,13 +29,13 @@ There are a number of NuGet packages with similar names so please use the follow
 • <strong>ID: </strong> sqlite-net-pcl<br>
 • <strong>Authors:</strong>  SQLite-net<br>
 • <strong>Owners:</strong>  praeclarum
-<br><br>
+<br>
 <h3>Second Package</h3>
 <strong>ID: </strong> SQLitePCLRaw.bundle_green<br>
 <strong>Version:</strong>  >= 2.1.0<br>
 <strong>Authors</strong> : Eric Sink<br>
 <strong>Owners:</strong>  Eric Sink
-<br><br>
+<br>
 <h3>Third Package</h3>
 • <strong>ID: </strong>  CommunityToolkit.Mvvm<br>
 • <strong>Authors:</strong> Microsoft<br>
