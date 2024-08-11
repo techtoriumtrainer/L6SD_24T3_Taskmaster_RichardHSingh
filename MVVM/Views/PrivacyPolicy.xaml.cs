@@ -64,7 +64,7 @@ public partial class PrivacyPolicy : ContentPage
                                "Enjoy being organised with Task Noter",
                                "Yiippeee");
 
-            await Navigation.PushAsync(new MainView());
+            await Navigation.PushModalAsync(new MainView());
           
 
         }

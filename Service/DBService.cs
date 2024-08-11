@@ -19,8 +19,8 @@ namespace TaskNoter.Service
             // initialise DB and creating tables
             TNDatabase = new SQLiteAsyncConnection(dbPath);
 
-            TNDatabase.CreateTableAsync<MyTask>().Wait();
-            TNDatabase.CreateTableAsync<Category>().Wait();       
+            //TNDatabase.CreateTableAsync<MyTask>().Wait();
+            //TNDatabase.CreateTableAsync<Category>().Wait();       
         }
 
         async Task Init()

@@ -290,7 +290,7 @@
                    Text="Start Using Task Noter"
                    FontSize="Medium"
                    Clicked="mainPageBTn_Clicked"
-                   Margin="0,50,0,0"/>
+                   Margin="0,69,0,50"/>
 
         </StackLayout>
     </ScrollView>

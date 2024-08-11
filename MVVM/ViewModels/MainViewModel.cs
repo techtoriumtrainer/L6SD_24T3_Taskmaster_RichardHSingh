@@ -47,7 +47,7 @@ namespace TaskNoter.MVVM.ViewModels
         }
 
 
-
+        [RelayCommand]
         public void AddTask()
         {
             if (!string.IsNullOrEmpty(TaskName))

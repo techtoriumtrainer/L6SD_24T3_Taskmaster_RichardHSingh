@@ -18,7 +18,7 @@ public partial class MainView : ContentPage
 		mainViewModel.UpdateData();
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void Button_Clicked(object sender, EventArgs e)
     {
         var taskView = new NewTaskView
         {
@@ -29,7 +29,7 @@ public partial class MainView : ContentPage
             }
         };
 
-        Navigation.PushAsync(taskView);
+        Navigation.PushModalAsync(taskView);
     }
 
     protected override async void OnAppearing()

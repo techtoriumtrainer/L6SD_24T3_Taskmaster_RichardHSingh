@@ -9,7 +9,7 @@ namespace TaskNoter.Converters
 {
     public class ColorConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object? parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var color = value.ToString();
             return Color.FromArgb(color);

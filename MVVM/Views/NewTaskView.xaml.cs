@@ -19,7 +19,7 @@ public partial class NewTaskView : ContentPage
     {
         var vm = BindingContext as NewTaskViewModel;
 
-        var selectedCategory = vm.Categories.Where(x => x.IsSelected).FirstOrDefault(); // after is selected == true is error occurs
+        var selectedCategory = vm.Categories.Where(x => x.IsSelected == true).FirstOrDefault(); // after is selected == true is error occurs
 
         if (selectedCategory != null)
         {
@@ -38,10 +38,10 @@ public partial class NewTaskView : ContentPage
 
             foreach (var eachTask in totalTasks)
             {
-                vm.Tasks.Add(task);
+                vm.Tasks.Add(eachTask);
             }
            
-            await Navigation.PopAsync();
+            await Navigation.PopModalAsync();
         }
         else
         {
@@ -65,7 +65,7 @@ public partial class NewTaskView : ContentPage
         {
             var newCat = new Category
             {
-                //Id = vm.Categories.Max(x => x.Id) + 1,
+                Id = vm.Categories.Max(x => x.Id) + 1,
                 Color = Color.FromRgb(
                     random.Next(0, 255),
                     random.Next(0, 255),
@@ -88,5 +88,11 @@ public partial class NewTaskView : ContentPage
         {
             await DisplayAlert("Invalid Category Selection", "Please implement a new or choose a category!", "Affirmative");
         }
+    }
+
+    
+    private async void CancelBtn_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new MainView());
     }
 }
