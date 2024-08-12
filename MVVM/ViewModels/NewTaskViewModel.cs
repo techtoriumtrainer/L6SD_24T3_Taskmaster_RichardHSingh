@@ -43,5 +43,18 @@ namespace TaskNoter.MVVM.ViewModels
                 Categories.Add(category);
             }
         }
+
+        public async Task DeleteCategoryAsync(Category category)
+        {
+            if (category == null)
+            {
+                return;
+            }
+
+            await TNDatabase.DeleteCategoryAsync(category);
+
+            Categories.Remove(category);
+            //UpdateData();
+        }
     }
 }

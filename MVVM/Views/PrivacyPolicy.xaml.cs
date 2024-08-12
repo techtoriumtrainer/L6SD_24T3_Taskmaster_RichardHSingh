@@ -69,4 +69,13 @@ public partial class PrivacyPolicy : ContentPage
 
         }
     }
+
+    private void RejectBTn_Clicked(object sender, EventArgs e)
+    {
+        #if ANDROID || IOS
+                System.Environment.Exit(0);
+        #elif WINDOWS
+            Application.Current.Quit();
+        #endif
+    }
 }

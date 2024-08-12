@@ -1,4 +1,6 @@
 using TaskNoter.MVVM.ViewModels;
+using TaskNoter.MVVM.Models;
+using TaskNoter.Service;
 
 namespace TaskNoter.MVVM.Views;
 
@@ -39,6 +41,31 @@ public partial class MainView : ContentPage
         if (BindingContext is MainViewModel viewModel)
         {
             viewModel.UpdateData();
+        }
+    }
+
+    private async void DeletTask_Clicked(object sender, EventArgs e)
+    {
+        // gets swipped task
+        var taskItem = sender as SwipeItem;
+
+        var deleteTask = taskItem?.CommandParameter as MyTask;
+
+
+        if (deleteTask != null)
+        {
+            var task = BindingContext as MainViewModel;
+
+            if (task != null && task.Tasks.Contains(deleteTask))
+            {
+             bool delete = await DisplayAlert("Deleting Task", $"Are you sure you want to delete this task '{task.TaskName}'?", "Yes", "No");
+
+                if (delete)
+                {
+                    await task.DeleteTaskAsync(deleteTask);
+                }
+            }
+
         }
     }
 }

@@ -1,6 +1,7 @@
 using TaskNoter.MVVM.ViewModels;
 using TaskNoter.MVVM.Models;
 using TaskNoter.Service;
+using System.Threading.Tasks;
 
 namespace TaskNoter.MVVM.Views;
 
@@ -13,6 +14,7 @@ public partial class NewTaskView : ContentPage
 	{
 		InitializeComponent();
         TNDatabase = new DBService(Constants.DatabasePath);
+       
     }
 
     private async void AddTaskBTN_Clicked(object sender, EventArgs e)
@@ -95,4 +97,30 @@ public partial class NewTaskView : ContentPage
     {
         await Navigation.PushModalAsync(new MainView());
     }
+
+    //private async void DeletedCategory_Clicked(object sender, EventArgs e)
+    //{
+    //    // gets swipped task
+    //    var categoryItem = sender as SwipeItem;
+
+    //    var deleteCategory = categoryItem?.CommandParameter as Category;
+
+
+    //    if (deleteCategory != null)
+    //    {
+    //        var category = BindingContext as NewTaskView;
+
+    //        if (category != null && category.Category.Contains(deleteCategory))
+    //        {
+    //            bool delete = await DisplayAlert("Deleting Task", $"Are you sure you want to delete this task '{category.CategoryName}'?", "Yes", "No");
+
+    //            if (delete)
+    //            {
+    //                await category.DeleteCategoryAsync(deleteCategory);
+    //            }
+    //        }
+
+    //    }
+    //}
+
 }
