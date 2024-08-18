@@ -20,6 +20,7 @@ namespace TaskNoter.MVVM.ViewModels
         public ObservableCollection<MyTask> Tasks { get; set; }
         public ObservableCollection<Category> Categories { get; set; }
 
+
         public NewTaskViewModel()
         {
             TNDatabase = new DBService(Constants.DatabasePath);
@@ -44,16 +45,43 @@ namespace TaskNoter.MVVM.ViewModels
             }
         }
 
+        public async Task AddTaskAsync(MyTask task)
+        {
+            await TNDatabase.SaveTaskAsync(task);
+            Tasks.Add(task);
+        }
+        public async Task DeleteTaskAsync(MyTask task)
+        {
+            await TNDatabase.DeleteTaskAsync(task);
+            Tasks.Remove(task);
+        }
+
+        public async Task AddCategoryAsync(Category category)
+        {
+            await TNDatabase.SaveCategoryAsync(category);
+            Categories.Add(category);
+        }
+
         public async Task DeleteCategoryAsync(Category category)
         {
-            if (category == null)
+            var deleteTask = Tasks.Where(t => t.CategoryId == category.Id).ToList();
+            foreach (var task in deleteTask)
             {
-                return;
+                await DeleteTaskAsync(task);
             }
 
             await TNDatabase.DeleteCategoryAsync(category);
 
             Categories.Remove(category);
+
+            //if (category == null)
+            //{
+            //    return;
+            //}
+
+            //await TNDatabase.DeleteCategoryAsync(category);
+
+            //Categories.Remove(category);
             //UpdateData();
         }
     }

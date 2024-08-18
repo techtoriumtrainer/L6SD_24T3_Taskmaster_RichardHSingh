@@ -19,8 +19,8 @@ namespace TaskNoter.Service
             // initialise DB and creating tables
             TNDatabase = new SQLiteAsyncConnection(dbPath);
 
-            //TNDatabase.CreateTableAsync<MyTask>().Wait();
-            //TNDatabase.CreateTableAsync<Category>().Wait();       
+            TNDatabase.CreateTableAsync<MyTask>().Wait();
+            TNDatabase.CreateTableAsync<Category>().Wait();
         }
 
         async Task Init()
@@ -37,7 +37,6 @@ namespace TaskNoter.Service
             await TNDatabase.CreateTableAsync<MyTask>();
             await TNDatabase.CreateTableAsync<Category>();
 
-            await FillData();
         }
 
 
@@ -47,6 +46,7 @@ namespace TaskNoter.Service
             await Init();
             return await TNDatabase.Table<MyTask>().ToListAsync();
         }
+
         public async Task<List<Category>> GetCategoryAsync()
         {
             await Init();
@@ -80,13 +80,17 @@ namespace TaskNoter.Service
             }
         }
 
+
         public async Task<int> DeleteTaskAsync(MyTask task)
         {
+            await Init();
+
             return await TNDatabase.DeleteAsync(task);
         }
 
         public async Task<int> DeleteCategoryAsync(Category cat)
         {
+            await Init();
             return await TNDatabase.DeleteAsync(cat);
         }
 
@@ -175,5 +179,7 @@ namespace TaskNoter.Service
                 await SaveTaskAsync(task);
             }
         }
+       
     }
+    
 }

@@ -92,6 +92,10 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiImage Include="Resources\drawable\icon_256x256.png" />
+	</ItemGroup>
+
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadUnhandledDeviceExceptionTaskNoterHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

@@ -1,30 +1,40 @@
 using TaskNoter.MVVM.ViewModels;
 using TaskNoter.MVVM.Models;
 using TaskNoter.Service;
+using System.Threading.Tasks;
 
 namespace TaskNoter.MVVM.Views;
-
 public partial class MainView : ContentPage
 {
-	private MainViewModel mainViewModel = new MainViewModel();
+    private MainViewModel mainViewModel;
+    private NewTaskViewModel newTaskModel;
+    private readonly DBService TNDatabase;
 
-	public MainView()
+    public MainView()
 	{
 		InitializeComponent();
+        mainViewModel = new MainViewModel();
+        BindingContext = mainViewModel;
 
-		BindingContext = mainViewModel;
-	}
+        newTaskModel = new NewTaskViewModel();
+        BindingContext = newTaskModel;
 
+    }
+
+    
     private void checkbox_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
 		mainViewModel.UpdateData();
     }
 
+    // ====================================================
+    // ======= CODE FOR ADDING TASKS AND CATEGORIES =======
+    // ====================================================
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        var taskView = new NewTaskView
+        var taskView = new NewTaskView //mainViewModel.TNDatabase, mainViewModel.Tasks, mainViewModel.Categories
         {
-            BindingContext = new NewTaskViewModel
+            BindingContext = new NewTaskView
             {
                 Tasks = mainViewModel.Tasks,
                 Categories = mainViewModel.Categories,
@@ -49,20 +59,19 @@ public partial class MainView : ContentPage
         // gets swipped task
         var taskItem = sender as SwipeItem;
 
-        var deleteTask = taskItem?.CommandParameter as MyTask;
-
-
-        if (deleteTask != null)
+        if (taskItem != null)
         {
-            var task = BindingContext as MainViewModel;
+            //var task = BindingContext as MainViewModel;
+            var deleteTask = taskItem?.CommandParameter as MyTask;
 
-            if (task != null && task.Tasks.Contains(deleteTask))
+            if (deleteTask != null ) ///&& task.Tasks.Contains(deleteTask)
             {
-             bool delete = await DisplayAlert("Deleting Task", $"Are you sure you want to delete this task '{task.TaskName}'?", "Yes", "No");
+
+             bool delete = await DisplayAlert("Deleting Task", $"Are you sure you want to delete this task '{deleteTask.TaskName}'?", "Yes", "No");
 
                 if (delete)
                 {
-                    await task.DeleteTaskAsync(deleteTask);
+                    await mainViewModel.DeleteTaskAsync(deleteTask);
                 }
             }
 

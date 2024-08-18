@@ -2,6 +2,7 @@ using TaskNoter.MVVM.ViewModels;
 using TaskNoter.MVVM.Models;
 using TaskNoter.Service;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace TaskNoter.MVVM.Views;
 
@@ -10,18 +11,30 @@ public partial class NewTaskView : ContentPage
 {
     private readonly DBService TNDatabase;
 
+    public ObservableCollection<Category> Categories { get; set; }
+    public ObservableCollection<MyTask> Tasks { get; set; }
+    public string Task {  get; set; }
+
     public NewTaskView()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         TNDatabase = new DBService(Constants.DatabasePath);
-       
+
+        BindingContext = new NewTaskViewModel();
+
+        Categories = new ObservableCollection<Category>();
+        Tasks = new ObservableCollection<MyTask>();
+
+        CategoryLoadAsync();
+
     }
+  
 
     private async void AddTaskBTN_Clicked(object sender, EventArgs e)
     {
         var vm = BindingContext as NewTaskViewModel;
 
-        var selectedCategory = vm.Categories.Where(x => x.IsSelected == true).FirstOrDefault(); // after is selected == true is error occurs
+        var selectedCategory = vm?.Categories.FirstOrDefault(x => x.IsSelected); //== true).FirstOrDefault(); 
 
         if (selectedCategory != null)
         {
@@ -42,7 +55,7 @@ public partial class NewTaskView : ContentPage
             {
                 vm.Tasks.Add(eachTask);
             }
-           
+
             await Navigation.PopModalAsync();
         }
         else
@@ -51,23 +64,33 @@ public partial class NewTaskView : ContentPage
         }
     }
 
+    public async Task DeleteTaskAsync(MyTask task)
+    {
+        await TNDatabase.DeleteTaskAsync(task);
+        Tasks.Remove(task);
+    }
+
     private async void AddCategoryBTN_Clicked(object sender, EventArgs e)
     {
         var vm = BindingContext as NewTaskViewModel;
 
-        string category =
-            await DisplayPromptAsync("New Category",
-            "Implement a new category name",
-            maxLength: 20,
-            keyboard: Keyboard.Text);
+     
+        string category = await DisplayPromptAsync("New Category",
+                                                   "Implement a new category name",
+                                                    maxLength: 20,
+                                                    keyboard: Keyboard.Text);
 
-        var random = new Random();
+        
 
         if (!string.IsNullOrEmpty(category))
         {
+            var random = new Random();
+
+            int newId = vm.Categories.Any() ? vm.Categories.Max(x => x.Id) + 1 : 1;
+
             var newCat = new Category
             {
-                Id = vm.Categories.Max(x => x.Id) + 1,
+                Id = newId,
                 Color = Color.FromRgb(
                     random.Next(0, 255),
                     random.Next(0, 255),
@@ -88,39 +111,73 @@ public partial class NewTaskView : ContentPage
         }
         else
         {
-            await DisplayAlert("Invalid Category Selection", "Please implement a new or choose a category!", "Affirmative");
+            await DisplayAlert("Invalid Category Selection", "Please implement a new category or choose an existing one!", "Affirmative");
         }
     }
 
-    
+
     private async void CancelBtn_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushModalAsync(new MainView());
     }
 
-    //private async void DeletedCategory_Clicked(object sender, EventArgs e)
-    //{
-    //    // gets swipped task
-    //    var categoryItem = sender as SwipeItem;
 
-    //    var deleteCategory = categoryItem?.CommandParameter as Category;
+    public async Task DeleteCategoryAsync(Category category)
+    {
+        var deleteTask = Tasks.Where(t => t.CategoryId == category.Id).ToList();
+        foreach (var task in deleteTask)
+        {
+            await DeleteTaskAsync(task);
+        }
+
+        await TNDatabase.DeleteCategoryAsync(category);
+
+        Categories.Remove(category);
+
+       
+    }
+
+    public async Task CategoryLoadAsync()
+    {
+        var categories = await TNDatabase.GetCategoryAsync();
+
+        Categories.Clear();
+
+        foreach (var category in categories)
+        {
+            Categories.Add(category);
+        }
+    }
+
+    private async void DeletedCategory_Clicked(object sender, EventArgs e)
+    {
+        // gets swipped task
+        var categoryItem = sender as SwipeItem;
+
+        var deleteCategory = categoryItem?.CommandParameter as Category;
 
 
-    //    if (deleteCategory != null)
-    //    {
-    //        var category = BindingContext as NewTaskView;
+        if (deleteCategory != null)
+        {
+            var vm = BindingContext as NewTaskView;
 
-    //        if (category != null && category.Category.Contains(deleteCategory))
-    //        {
-    //            bool delete = await DisplayAlert("Deleting Task", $"Are you sure you want to delete this task '{category.CategoryName}'?", "Yes", "No");
+            if (vm != null) // && category.Category.Contains(deleteCategory)
+            {
+                bool delete = await DisplayAlert("Deleting Task", $"Are you sure you want to delete this task '{deleteCategory.CategoryName}'?", "Yes", "No");
 
-    //            if (delete)
-    //            {
-    //                await category.DeleteCategoryAsync(deleteCategory);
-    //            }
-    //        }
+                if (delete)
+                {
+                    await vm.DeleteCategoryAsync(deleteCategory);
 
-    //    }
-    //}
+                    await vm.CategoryLoadAsync();
+                }
+            }
+            else
+            {
+                await DisplayAlert("Warning", "ViewModel is not set CORRECTLY.", "OK");
+            }
+
+        }
+    }
 
 }

@@ -23,8 +23,8 @@ namespace TaskNoter.MVVM.ViewModels
         // initialise DB again
         private readonly DBService TNDatabase;
 
-        public ObservableCollection<Category> Categories { get; set; }
-        public ObservableCollection<MyTask> Tasks { get; set; }
+            public ObservableCollection<Category> Categories { get; set; }
+            public ObservableCollection<MyTask> Tasks { get; set; }
 
 
         [ObservableProperty]
@@ -58,16 +58,21 @@ namespace TaskNoter.MVVM.ViewModels
             }
         }
 
+
         [RelayCommand]
-        public async void DeleteTask(MyTask task)
+        public async Task DeleteTaskAsync(MyTask task)
         {
-            if (task != null)
+            if (task == null)
             {
-                await TNDatabase.DeleteTaskAsync(task);
-                Tasks.Remove(task);
-                LoadDBData();
+                return;
             }
+
+            await TNDatabase.DeleteTaskAsync(task);
+            Tasks.Remove(task);
+
+            UpdateData();
         }
+
 
         [RelayCommand]
         public void EditTask(MyTask task)
@@ -86,11 +91,13 @@ namespace TaskNoter.MVVM.ViewModels
             UpdateData();
         }
 
+
         [RelayCommand]
-        private async void LoadDBData()
+        private async Task LoadDBData()
         {
-            var categories = await TNDatabase.GetCategoryAsync();
             Categories.Clear();
+            var categories = await TNDatabase.GetCategoryAsync();
+            
 
             foreach (var category in categories)
             {
@@ -100,8 +107,9 @@ namespace TaskNoter.MVVM.ViewModels
             //Categories = new ObservableCollection<Category>(categories);
 
 
-            var tasks = await TNDatabase.GetTaskAsync();
             Tasks.Clear();
+            var tasks = await TNDatabase.GetTaskAsync();
+           
 
             foreach (var task in tasks)
             {
@@ -118,74 +126,20 @@ namespace TaskNoter.MVVM.ViewModels
         {
             foreach (var c in Categories)
             {
-                var tasks = from t in Tasks
-                            where t.CategoryId == c.Id
-                            select t;
+                var tasks = Tasks.Where(t => t.CategoryId == c.Id);
+                var completed = tasks.Where(t => t.Completed).Count();
+                var totalTasks = tasks.Count();
 
-                var completed = from t in tasks
-                                where t.Completed == true
-                                select t;
-
-                var notCompleted = from t in tasks
-                                   where t.Completed == false
-                                   select t;
-
-
-                c.PendingTasks = notCompleted.Count();
-                c.Percentage = (float)completed.Count() / (float)tasks.Count();
+                c.PendingTasks = totalTasks - completed;
+                c.Percentage = totalTasks == 0 ? 0 : (float)completed / totalTasks;
             }
-
             foreach (var t in Tasks)
             {
-                var categoryColor =
-                    (from c in Categories
-                     where c.Id == t.CategoryId
-                     select c.Color).FirstOrDefault();
+                var categoryColor = Categories.FirstOrDefault(c => c.Id == t.CategoryId)?.Color;
                 t.TaskColor = categoryColor;
             }
-        }
+        }     
 
-        public async Task DeleteTaskAsync(MyTask task)
-        {
-            if (task == null)
-            {
-                return;
-            }
-
-            await TNDatabase.DeleteTaskAsync(task);
-            Tasks.Remove(task);
-
-            UpdateData();
-
-            return;
-
-        }
-        //public void UpdateData()
-        //{
-        //    foreach (var c in Categories)
-        //    {
-        //        var tasks = Tasks.Where(t => t.CategoryId == c.Id);
-        //        var completed = tasks.Where(t => t.Completed).Count();
-        //        var totalTasks = tasks.Count();
-
-        //        c.PendingTasks = totalTasks - completed;
-        //        c.Percentage = totalTasks == 0 ? 0 : (float)completed / totalTasks;
-        //    }
-        //    foreach (var t in Tasks)
-        //    {
-        //        var catColor = Categories.FirstOrDefault(c => c.Id == t.CategoryId)?.Color;
-        //        t.TaskColor = catColor;
-        //    }
-        //}
-
-        //public async Task DeleteTaskAsync(MyTask task)
-        //{
-        //    if (task == null) return;
-        //    await TNDatabase.DeleteTaskAsync(task);
-        //    Tasks.Remove(task);
-        //    UpdateData();
-
-        //}
     }
 }
 

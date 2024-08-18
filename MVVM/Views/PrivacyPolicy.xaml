@@ -12,6 +12,7 @@
         </Style>
         <Style TargetType="Button">
             <Setter Property="FontFamily" Value="OpenSansBold"/>
+            <Setter Property="TextColor" Value="WhiteSmoke"/>
         </Style>
     </ContentPage.Resources>
 
@@ -46,7 +47,7 @@
 
 
             <!--Introduction Privacy Policy-->
-            <Label Text="Introduction"
+            <Label Text="1.0 ~ Introduction"
                    FontSize="20"
                    FontAttributes="Bold"
                    TextColor="Teal"
@@ -56,21 +57,11 @@
             <Label Text="We at Task Noter are dedicated to keeping your information private. This Privacy Policy describes the kinds of data we gather, the ways in which we use it, and the precautions we take to protect your information. You accept the policies outlined in this policy by using our app."
                    LineHeight="1.1"/>
 
-            <StackLayout Orientation="Horizontal" 
-                         HorizontalOptions="Start"
-                         Margin="0,5,0,0">
-                
-                <CheckBox x:Name="IntroCheckBox"
-                          Color="Firebrick"/>
-                
-                <Label Text="I agree to this Privacy Policy" 
-                       VerticalOptions="Center"
-                       FontAttributes="Bold"/>
-            </StackLayout>
+            
 
 
             <!--Collected Info Privacy Policy-->
-            <Label Text="Information We Collect"
+            <Label Text="2.0 ~ Information We Collect"
                      FontSize="20"
                      FontAttributes="Bold"
                      TextColor="Teal"
@@ -80,7 +71,7 @@
             <Label Text="In order to give our users better services, we gather following information. This comprises of:"
                     LineHeight="1.1"/>
 
-            <Label Text="Personal Data"
+            <Label Text="2.1 ~ Personal Data"
                      FontSize="16"
                      FontAttributes="Bold"
                      TextColor="DarkOliveGreen"
@@ -90,7 +81,7 @@
             <Label Text="Information that can be used to identify you personally is referred to as personal data. We might gather information about you when you use Task Noter, including your name, email address, and any other contact details you enter"
                     LineHeight="1.1"/>
 
-            <Label Text="Task Data"
+            <Label Text="2.2 ~ Task Data"
                      FontSize="16"
                      FontAttributes="Bold"
                      TextColor="DarkOliveGreen"
@@ -100,21 +91,11 @@
             <Label Text="The information you produce and maintain within the app about your tasks and activities is called Task Data. Task names, descriptions, due dates, and any other pertinent information you choose to enter may be included in this."
                    LineHeight="1.1"/>
 
-            <StackLayout Orientation="Horizontal" 
-                           HorizontalOptions="Start"
-                           Margin="0,5,0,0">
-
-                <CheckBox x:Name="InfoCollectedCheckBox"
-                          Color="Firebrick"/>
-
-                <Label Text="I agree to this Privacy Policy" 
-                         VerticalOptions="Center"
-                         FontAttributes="Bold"/>
-            </StackLayout>
+           
 
 
             <!--How Used Info Privacy Policy-->
-            <Label Text="How We Use Information"
+            <Label Text="3.0 ~ How We Use Information"
               FontSize="20"
               FontAttributes="Bold"
               TextColor="Teal"
@@ -125,21 +106,11 @@
              LineHeight="1.1"/>
 
         
-            <StackLayout Orientation="Horizontal" 
-                    HorizontalOptions="Start"
-                    Margin="0,5,0,0">
-
-                <CheckBox x:Name="HowUsedCheckBox"
-                   Color="Firebrick"/>
-
-                <Label Text="I agree to this Privacy Policy" 
-                  VerticalOptions="Center"
-                  FontAttributes="Bold"/>
-            </StackLayout>
+            
 
 
             <!--Disclosure of Privacy Policy-->
-            <Label Text="Disclosure of Information"
+            <Label Text="4.0 ~ Disclosure of Information"
                     FontSize="20"
                     FontAttributes="Bold"
                     TextColor="Teal"
@@ -150,21 +121,11 @@
                 LineHeight="1.1"/>
 
 
-            <StackLayout Orientation="Horizontal" 
-                  HorizontalOptions="Start"
-                  Margin="0,5,0,0">
-
-                <CheckBox x:Name="DisclosureCheckBox"
-                 Color="Firebrick"/>
-
-                <Label Text="I agree to this Privacy Policy" 
-                        VerticalOptions="Center"
-                        FontAttributes="Bold"/> 
-            </StackLayout>
+            
 
 
             <!--Security  of Privacy Policy-->
-            <Label Text="Security of Information"
+            <Label Text="5.0 ~ Security of Information"
                     FontSize="20"
                     FontAttributes="Bold"
                     TextColor="Teal"
@@ -175,22 +136,12 @@
                    LineHeight="1.1"/>
 
 
-            <StackLayout Orientation="Horizontal" 
-                          HorizontalOptions="Start"
-                          Margin="0,5,0,0">
-
-                <CheckBox x:Name="SecurityCheckBox"
-                         Color="Firebrick"/>
-
-                <Label Text="I agree to this Privacy Policy" 
-                        VerticalOptions="Center"
-                        FontAttributes="Bold"/>
-            </StackLayout>
+          
 
 
 
             <!--Protection of Privacy Policy-->
-            <Label Text="Protection of Data Rights"
+            <Label Text="6.0 ~ Protection of Data Rights"
                     FontSize="20"
                     FontAttributes="Bold"
                     TextColor="Teal"
@@ -201,22 +152,12 @@
                    LineHeight="1.1"/>
 
 
-            <StackLayout Orientation="Horizontal" 
-                          HorizontalOptions="Start"
-                          Margin="0,5,0,0">
-
-                <CheckBox x:Name="ProtectionCheckBox"
-                         Color="Firebrick"/>
-
-                <Label Text="I agree to this Privacy Policy" 
-                        VerticalOptions="Center"
-                        FontAttributes="Bold"/>
-            </StackLayout>
+          
 
             
 
             <!--Changes to Privacy Policy-->
-            <Label Text="Changes to Privacy Policy"
+            <Label Text="7.0 ~ Changes to Privacy Policy"
                     FontSize="20"
                     FontAttributes="Bold"
                     TextColor="Teal"
@@ -227,22 +168,12 @@
                    LineHeight="1.1"/>
 
 
-            <StackLayout Orientation="Horizontal" 
-                          HorizontalOptions="Start"
-                          Margin="0,5,0,0">
-
-                <CheckBox x:Name="ChangesCheckBox"
-                            Color="Firebrick"/>
-
-                <Label Text="I agree to this Privacy Policy" 
-                        VerticalOptions="Center"
-                        FontAttributes="Bold"/>
-            </StackLayout>
+           
 
 
             
             <!--Contact Us Privacy Policy-->
-            <Label Text="Contact Us"
+            <Label Text="8.0 ~ Contact Us"
                   FontSize="20"
                   FontAttributes="Bold"
                   TextColor="Teal"
@@ -251,46 +182,68 @@
 
             <Label Text="Kindly contact us if you have any questions or complaints regarding our Privacy Policy or our data practices."
                     LineHeight="1.1"/>
-            <Label Text="Via Email"
+            
+            <Label Text="8.1 ~ Via Email"
                      FontSize="16"
                      FontAttributes="Bold"
                      TextColor="DarkOliveGreen"
                      HorizontalOptions="Start"
                      Margin="0,20,0,5"/>    
 
-            <Label Text="info@tasknoter.co.nz"
+            <Label Text=" Should one wish to contact is via email, please using the following address info@tasknoter.co.nz"
                   LineHeight="1.1"/>
 
-            <Label Text="Via Phone"
+            <Label Text="8.2~ Via Phone"
                      FontSize="16"
                      FontAttributes="Bold"
                      TextColor="DarkOliveGreen"
                      HorizontalOptions="Start"
                      Margin="0,20,0,5"/>
 
-            <Label Text="0508 83 83 83"
+            <Label Text="For immediate assistance, contact us on 0508 69 69 69"
                    LineHeight="1.1"/>
 
 
             <StackLayout Orientation="Horizontal" 
                         HorizontalOptions="Start"
-                        Margin="0,5,0,0">
+                        Margin="0,69,0,0">
 
-                <CheckBox x:Name="ContactCheckBox"
-                          Color="Firebrick"/>
+                <CheckBox x:Name="AgreementCheckBox"
+                          Color="Firebrick"
+                          HeightRequest="30"
+                          WidthRequest="30"
+                          Scale="1.5"/>
 
-                <Label Text="I agree to this Privacy Policy" 
-                      VerticalOptions="Center"
-                      FontAttributes="Bold"/>
+                <Label Text="I AGREE TO THESE PRIVACY POLICIES" 
+                       FontSize="16"
+                       VerticalOptions="Center"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
             </StackLayout>
 
             <Button x:Name="mainPageBTn"
-                   BackgroundColor="DarkBlue"
-                   CornerRadius="50"
-                   Text="START USING TASK NOTER"
-                   FontSize="Medium"
-                   Clicked="mainPageBTn_Clicked"
-                   Margin="0,69,0,0"/>
+                    BackgroundColor="DarkBlue"
+                    IsEnabled="{Binding Source={x:Reference AgreementCheckBox}, Path = IsChecked}"                   
+                    CornerRadius="50"
+                    Text="START USING TASK NOTER"
+                    FontSize="Medium"
+                    Clicked="mainPageBTn_Clicked"
+                    Margin="0,69,0,0">
+
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsEnabled, Source={x:Reference mainPageBTn}}" Value="False">
+                        <Setter Property="BackgroundColor" Value="LightGrey" />
+                        <Setter Property="Text" Value="ACCEPT THE PRIVACY POLICY" />
+                    </DataTrigger>
+                    
+                    <DataTrigger TargetType="Button" Binding="{Binding IsEnabled, Source={x:Reference mainPageBTn}}" Value="True">
+                        <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        <Setter Property="Text" Value="START USING TASK NOTER" />
+                        <Setter Property="TextColor" Value="Azure" />
+                    </DataTrigger>        
+                </Button.Triggers>
+                
+                </Button>
             
             <Button x:Name="RejectBTn"
                     BackgroundColor="Firebrick"
