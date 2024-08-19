@@ -19,7 +19,7 @@ namespace TaskNoter.MVVM.Models
         public int Id { get; set; }
 
         // will assign a name to category
-        public string CategoryName { get; set; }
+        public string CategoryName { get; set; } = string.Empty;
 
         // what colour we can assign to cat
         public string Color { get; set; }

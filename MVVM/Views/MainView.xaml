@@ -46,15 +46,21 @@
                         
                         <Grid Padding="10">
                             <Frame StyleClass="BoxShadow">
-                                <VerticalStackLayout Padding="15" Spacing="10">
+                                <VerticalStackLayout Padding="5" Spacing="5">
                                     <Label StyleClass="DarkBlue, CardTitle"
                                            Text="{Binding CategoryName}"/>
 
                                     <Label StyleClass="LightBlue"
                                            Text="{Binding PendingTasks, StringFormat='Tasks Associated: {0}'}"/>
 
+
+                                    <Label StyleClass="LightBlue"
+                                           Text="{Binding Percentage, StringFormat='Completion Rate: {0:P0}'}"/>
+
                                     <ProgressBar Progress="{Binding Percentage}"
                                                  ProgressColor="{Binding Color, Converter={StaticResource ColorConverter}}"/>
+
+                                    
                                 </VerticalStackLayout>
                             </Frame>
                         </Grid>
@@ -68,7 +74,7 @@
         
         <!--Pending tasks section code-->
         <Grid Grid.Row="2"
-              RowDefinitions=".2*,.8*">
+              RowDefinitions=".1*,.8*">
             <Label StyleClass="SubTitle"
                    Text="UNRESOLVED TASKS"
                    Margin="0,30,0,0"/>
@@ -119,23 +125,7 @@
                                         </Label.Triggers>
                                     </Label>
 
-                                    <!-- Updated HorizontalStackLayout with DataTrigger --><!--
-                                    <HorizontalStackLayout VerticalOptions="Center" 
-                                                           HorizontalOptions="FillAndExpand" 
-                                                           Spacing="5">
-                                        
-                                        <Label Text="{Binding TaskName}"
-                                               VerticalOptions="Center"
-                                               HorizontalOptions="StartAndExpand"
-                                               TextColor="Black"/>
-
-                                        --><!-- "COMPLETED" label is conditionally displayed based on the task completion --><!--
-                                        <Label Text="COMPLETED"
-                                               VerticalOptions="End"
-                                               HorizontalOptions="EndAndExpand"
-                                               TextColor="OrangeRed"
-                                               IsVisible="{Binding Completed}"/>
-                                    </HorizontalStackLayout>-->
+                                  
 
                                 </HorizontalStackLayout>
                             </Frame>

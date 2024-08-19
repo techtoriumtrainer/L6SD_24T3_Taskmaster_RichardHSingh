@@ -212,14 +212,25 @@
                           Color="Firebrick"
                           HeightRequest="30"
                           WidthRequest="30"
-                          Scale="1.5"/>
+                          Scale="1.5">
+
+                    <CheckBox.Triggers>
+                        <DataTrigger TargetType="CheckBox" Binding="{Binding IsChecked, Source={x:Reference AgreementCheckBox}}" Value="True">
+                            <Setter Property="Color" Value="Green" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="CheckBox" Binding="{Binding IsChecked, Source={x:Reference AgreementCheckBox}}" Value="False">
+                            <Setter Property="Color" Value="Firebrick" />
+                        </DataTrigger>
+                    </CheckBox.Triggers>
+
+                    </CheckBox>
 
                 <Label Text="I AGREE TO THESE PRIVACY POLICIES" 
-                       FontSize="16"
-                       VerticalOptions="Center"
-                       FontAttributes="Bold"
-                       Margin="10,0,0,0"/>
-            </StackLayout>
+                    FontSize="16"
+                    VerticalOptions="Center"
+                    FontAttributes="Bold"
+                    Margin="10,0,0,0"/>
+        </StackLayout>
 
             <Button x:Name="mainPageBTn"
                     BackgroundColor="DarkBlue"

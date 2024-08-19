@@ -29,21 +29,21 @@ namespace TaskNoter.MVVM.ViewModels
             Categories = new ObservableCollection<Category>();
 
             // Asynchronoously loading categories
-            CategoryLoadAsync();
+            // CategoryLoadAsync();
         }
 
 
-        public async Task CategoryLoadAsync()
-        {
-            var categories = await TNDatabase.GetCategoryAsync();
+        //public async Task CategoryLoadAsync()
+        //{
+        //    var categories = await TNDatabase.GetCategoryAsync();
 
-            Categories.Clear();
+        //    Categories.Clear();
 
-            foreach (var category in categories)
-            {
-                Categories.Add(category);
-            }
-        }
+        //    foreach (var category in categories)
+        //    {
+        //        Categories.Add(category);
+        //    }
+        //}
 
         public async Task AddTaskAsync(MyTask task)
         {
@@ -65,6 +65,7 @@ namespace TaskNoter.MVVM.ViewModels
         public async Task DeleteCategoryAsync(Category category)
         {
             var deleteTask = Tasks.Where(t => t.CategoryId == category.Id).ToList();
+
             foreach (var task in deleteTask)
             {
                 await DeleteTaskAsync(task);

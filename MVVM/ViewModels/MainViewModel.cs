@@ -1,44 +1,29 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using PropertyChanged;
-using System;
-using System.Collections.Generic;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using TaskNoter.MVVM.Models;
 using TaskNoter.Service;
-using System.Data;
-using SQLite;
-
 
 namespace TaskNoter.MVVM.ViewModels
 {
-    [AddINotifyPropertyChangedInterface]
-
     public partial class MainViewModel : ObservableObject
     {
-        // initialise DB again
-        private readonly DBService TNDatabase;
+        private readonly DBService _dbService;
 
-            public ObservableCollection<Category> Categories { get; set; }
-            public ObservableCollection<MyTask> Tasks { get; set; }
-
+        public ObservableCollection<Category> Categories { get; set; }
+        public ObservableCollection<MyTask> Tasks { get; set; }
 
         [ObservableProperty]
-        private string taskName;
+        private string _taskName;
 
         [ObservableProperty]
-        private string selectedTask;
-
-
+        private string _selectedTask;
 
         public MainViewModel()
         {
-            TNDatabase = new DBService(Constants.DatabasePath);
-
+            _dbService = new DBService(Constants.DatabasePath);
             Categories = new ObservableCollection<Category>();
             Tasks = new ObservableCollection<MyTask>();
 
@@ -47,32 +32,28 @@ namespace TaskNoter.MVVM.ViewModels
             LoadDBData();
         }
 
-
         [RelayCommand]
-        public void AddTask()
+        public async Task AddTaskAsync()
         {
             if (!string.IsNullOrEmpty(TaskName))
             {
-                Tasks.Add(new MyTask { TaskName = TaskName });
+                var task = new MyTask { TaskName = TaskName };
+                await _dbService.SaveTaskAsync(task);
+                Tasks.Add(task);
                 TaskName = string.Empty;
             }
         }
 
-
         [RelayCommand]
         public async Task DeleteTaskAsync(MyTask task)
         {
-            if (task == null)
+            if (task != null)
             {
-                return;
+                await _dbService.DeleteTaskAsync(task);
+                Tasks.Remove(task);
+                UpdateData();
             }
-
-            await TNDatabase.DeleteTaskAsync(task);
-            Tasks.Remove(task);
-
-            UpdateData();
         }
-
 
         [RelayCommand]
         public void EditTask(MyTask task)
@@ -81,42 +62,33 @@ namespace TaskNoter.MVVM.ViewModels
             {
                 TaskName = task.TaskName;
                 SelectedTask = task.ToString();
-                //AddOrUpdateButtonText = "UpdateTask";
             }
         }
-
 
         private void Tasks_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             UpdateData();
         }
 
-
         [RelayCommand]
-        private async Task LoadDBData()
+        
+        public async Task LoadDBData()
         {
+            var categories = await _dbService.GetCategoryAsync();
             Categories.Clear();
-            var categories = await TNDatabase.GetCategoryAsync();
-            
 
             foreach (var category in categories)
             {
                 Categories.Add(category);
             }
 
-            //Categories = new ObservableCollection<Category>(categories);
-
-
+            var tasks = await _dbService.GetTaskAsync();
             Tasks.Clear();
-            var tasks = await TNDatabase.GetTaskAsync();
-           
 
             foreach (var task in tasks)
             {
                 Tasks.Add(task);
             }
-            ///Tasks = new ObservableCollection<MyTask>(tasks);            
-
 
             UpdateData();
         }
@@ -124,25 +96,21 @@ namespace TaskNoter.MVVM.ViewModels
 
         public void UpdateData()
         {
-            foreach (var c in Categories)
+            foreach (var category in Categories)
             {
-                var tasks = Tasks.Where(t => t.CategoryId == c.Id);
-                var completed = tasks.Where(t => t.Completed).Count();
+                var tasks = Tasks.Where(t => t.CategoryId == category.Id);
+                var completed = tasks.Count(t => t.Completed);
                 var totalTasks = tasks.Count();
 
-                c.PendingTasks = totalTasks - completed;
-                c.Percentage = totalTasks == 0 ? 0 : (float)completed / totalTasks;
+                category.PendingTasks = totalTasks - completed;
+                category.Percentage = totalTasks == 0 ? 0 : (float)completed / totalTasks;
             }
-            foreach (var t in Tasks)
-            {
-                var categoryColor = Categories.FirstOrDefault(c => c.Id == t.CategoryId)?.Color;
-                t.TaskColor = categoryColor;
-            }
-        }     
 
+            foreach (var task in Tasks)
+            {
+                var categoryColor = Categories.FirstOrDefault(c => c.Id == task.CategoryId)?.Color;
+                task.TaskColor = categoryColor;
+            }
+        }
     }
 }
-
-
-    
-
