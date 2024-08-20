@@ -51,7 +51,7 @@ The objective is to create "Taskmaster," a task management programme aimed at he
 <br><br>
 
 # Required NuGet Packages For App Develeopment
-The following are additional NUGETS required other than the ones that are automatically installed when one choosed to develop with .NET MAUI<br>
+The following are additional NUGETS required other than the ones that are automatically installed when one chooses to develop with .NET MAUI:<br>
 • CommunityToolkit.Mvvm<br>
 • Fody<br>
 • Microsoft.Maui.Controls<br>
