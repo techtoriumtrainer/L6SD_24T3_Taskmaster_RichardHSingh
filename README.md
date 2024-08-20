@@ -1,7 +1,7 @@
 # .Net MAUI Taskmaster App Developement
 The objective is to create "Taskmaster," a task management programme aimed at helping project managers, students, and working professionals. The aim of this project is to develop a mobile application that is both efficient and easy to use, enabling users to plan their daily activities and long-term initiatives. By letting users organise, manage, and monitor their work in a seamless and safe manner, the software should increase productivity. 
 
-<h5>The application will need to contain these functionalities listed:</h5>
+<h3>The application will need to contain these functionalities listed:</h3>
 1.	Category Creation and Management:<br>
  &nbsp; &nbsp; •	Implement the functionality that allows users to create multiple categories to organise their tasks. Each category should serve as a container for related tasks, such as "Work," "Personal," or "School Projects."<br>
 &nbsp; &nbsp;  •	Ensure that users can easily view these categories from the main page.<br>
@@ -37,7 +37,7 @@ The objective is to create "Taskmaster," a task management programme aimed at he
 &nbsp; &nbsp;  •	The app should be designed for deployment on mobile devices, ensuring that users can manage their tasks on the go. Consider factors like responsive design, touch-friendly interfaces, and optimised performance for mobile platforms.
 
 <br><br>
-<h5>The Privacy Principles page should be professional, and must include the following:</h5>
+<h3>The Privacy Principles page should be professional, and must include the following:</h3>
 • Introduction<br>
 • Information we collect:<br>
 &nbsp; &nbsp; ○ Personal Data<br>
