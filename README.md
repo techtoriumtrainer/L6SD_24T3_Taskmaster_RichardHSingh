@@ -49,7 +49,13 @@ The objective is to create "Taskmaster," a task management programme aimed at he
 • Changes to Privacy Policy<br>
 • Contact Us
 <br><br>
-
+# Required NuGet Packages For App Develeopment
+The following are additional NUGETS required other than the ones that are automatically installed when one choosed to develop with .NET MAUI<br>
+• CommunityToolkit.Mvvm<br>
+• Fody<br>
+• Microsoft.Maui.Controls<br>
+• PropertyChanged.Fody
+<br><br>
 # Required SQL NuGet Packages
 There are a number of NuGet packages with similar names so please use the following packages that have these attributes:<br>
 <h4>First Package</h4>
