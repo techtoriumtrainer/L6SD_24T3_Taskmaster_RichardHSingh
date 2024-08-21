@@ -16,6 +16,8 @@ namespace TaskNoter.MVVM.Views
             BindingContext = _viewModel;
         }
 
+        // ================== CODE FOR ALLOWING USER TO CREATE NEW TASK IN NEWTASKVIEW PAGE ======================
+        // =======================================================================================================
         private async void AddTaskBTN_Clicked(object sender, EventArgs e)
         {
             if (BindingContext is NewTaskViewModel vm)
@@ -42,6 +44,8 @@ namespace TaskNoter.MVVM.Views
             }
         }
 
+        // ================== CODE FOR ALLOWING USER TO CREATE A NEW CATEGORY IN NEWTASKVIEW ======================
+        // ========================================================================================================
         private async void AddCategoryBTN_Clicked(object sender, EventArgs e)
         {
             if (BindingContext is NewTaskViewModel vm)
@@ -66,11 +70,15 @@ namespace TaskNoter.MVVM.Views
             }
         }
 
+        // ================== CODE FOR CANCEL BUTTON INCASE USER ACCIDENTLY CLICKED ON NEW TASK BUTTON ======================
+        // ==================================================================================================================
         private async void CancelBtn_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();
         }
 
+        // ================== CODE FOR ALLOWING USER TO DELETE THEIR CATEGORY ======================
+        // =========================================================================================
         private async void DeletedCategory_Clicked(object sender, EventArgs e)
         {
             if (sender is SwipeItem categoryItem && categoryItem.CommandParameter is Category deleteCategory)

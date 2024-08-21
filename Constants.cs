@@ -6,7 +6,7 @@ namespace TaskNoter
     public static class Constants
     {
         // ====================== NAME GIVEN TO DATABASE =======================
-        public const string DB_Name = "TaskNoter_DB.db3";
+        public const string DB_Name = "Taskmaster.db3";
 
         // ======================== DATABASE PATH ========================
         public static string DatabasePath =>

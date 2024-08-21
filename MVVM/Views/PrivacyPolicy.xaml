@@ -29,7 +29,7 @@
                      Spacing="0">   
             
             <!--Purpose of Privacy Policy-->
-            <Label Text="Task Noter Privacy Policies"
+            <Label Text="Taskmaster Privacy Policies"
                    FontSize="Title"
                    FontAttributes="Bold"
                    TextColor="DarkBlue"
@@ -54,7 +54,7 @@
                    HorizontalOptions="Center"
                    Margin="0,40,0,5"/>
             
-            <Label Text="We at Task Noter are dedicated to keeping your information private. This Privacy Policy describes the kinds of data we gather, the ways in which we use it, and the precautions we take to protect your information. You accept the policies outlined in this policy by using our app."
+            <Label Text="We at Taskmaster are dedicated to keeping your information private. This Privacy Policy describes the kinds of data we gather, the ways in which we use it, and the precautions we take to protect your information. You accept the policies outlined in this policy by using our app."
                    LineHeight="1.1"/>
 
             
@@ -78,7 +78,7 @@
                      HorizontalOptions="Start"
                      Margin="0,20,0,5"/>
 
-            <Label Text="Information that can be used to identify you personally is referred to as personal data. We might gather information about you when you use Task Noter, including your name, email address, and any other contact details you enter"
+            <Label Text="Information that can be used to identify you personally is referred to as personal data. We might gather information about you when you use Taskmaster, including your name, email address, and any other contact details you enter"
                     LineHeight="1.1"/>
 
             <Label Text="2.2 ~ Task Data"
@@ -102,7 +102,7 @@
               HorizontalOptions="Center"
               Margin="0,40,0,5"/>
 
-            <Label Text="We use the data we gather to improve your Task Noter experience. We might use your information to enhance the functionality of the app, offer customer service, notify you of updates or changes, and for other app-related reasons."
+            <Label Text="We use the data we gather to improve your Taskmaster experience. We might use your information to enhance the functionality of the app, offer customer service, notify you of updates or changes, and for other app-related reasons."
              LineHeight="1.1"/>
 
         
@@ -190,7 +190,7 @@
                      HorizontalOptions="Start"
                      Margin="0,20,0,5"/>    
 
-            <Label Text=" Should one wish to contact is via email, please using the following address info@tasknoter.co.nz"
+            <Label Text=" Should one wish to contact is via email, please using the following address info@taskmaster.co.nz"
                   LineHeight="1.1"/>
 
             <Label Text="8.2~ Via Phone"
@@ -236,7 +236,7 @@
                     BackgroundColor="DarkBlue"
                     IsEnabled="{Binding Source={x:Reference AgreementCheckBox}, Path = IsChecked}"                   
                     CornerRadius="50"
-                    Text="START USING TASK NOTER"
+                    Text="START USING Taskmaster"
                     FontSize="Medium"
                     Clicked="mainPageBTn_Clicked"
                     Margin="0,69,0,0">
@@ -249,7 +249,7 @@
                     
                     <DataTrigger TargetType="Button" Binding="{Binding IsEnabled, Source={x:Reference mainPageBTn}}" Value="True">
                         <Setter Property="BackgroundColor" Value="DarkBlue" />
-                        <Setter Property="Text" Value="START USING TASK NOTER" />
+                        <Setter Property="Text" Value="START USING TASKMASTER"/>
                         <Setter Property="TextColor" Value="Azure" />
                     </DataTrigger>        
                 </Button.Triggers>

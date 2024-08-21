@@ -32,7 +32,8 @@ namespace TaskNoter.MVVM.ViewModels
             // CategoryLoadAsync();
         }
 
-
+        // ================== LOADING CATEGORY CODE ======================
+        // ===============================================================
         //public async Task CategoryLoadAsync()
         //{
         //    var categories = await TNDatabase.GetCategoryAsync();
@@ -45,23 +46,33 @@ namespace TaskNoter.MVVM.ViewModels
         //    }
         //}
 
+        // ================== ADDING TASKS CODE ======================
+        // ===========================================================
         public async Task AddTaskAsync(MyTask task)
         {
             await TNDatabase.SaveTaskAsync(task);
             Tasks.Add(task);
         }
+
+
+        // ================== DELETING TASKS CODE ======================
+        // =============================================================
         public async Task DeleteTaskAsync(MyTask task)
         {
             await TNDatabase.DeleteTaskAsync(task);
             Tasks.Remove(task);
         }
 
+        // ================== ADDING CATEGORY CODE ======================
+        // ==============================================================
         public async Task AddCategoryAsync(Category category)
         {
             await TNDatabase.SaveCategoryAsync(category);
             Categories.Add(category);
         }
 
+        // ================== DELETING CATEGORY CODE ======================
+        // ================================================================
         public async Task DeleteCategoryAsync(Category category)
         {
             var deleteTask = Tasks.Where(t => t.CategoryId == category.Id).ToList();

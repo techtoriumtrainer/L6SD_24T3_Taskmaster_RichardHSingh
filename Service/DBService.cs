@@ -19,6 +19,8 @@ namespace TaskNoter.Service
             TNDatabase.CreateTableAsync<Category>().Wait();
         }
 
+        // ================== INITIALISE DB IF NOT EXISTING =====================
+        // ======================================================================
         async Task Init()
         {
             if (TNDatabase != null)
@@ -33,6 +35,8 @@ namespace TaskNoter.Service
             await TNDatabase.CreateTableAsync<Category>();
         }
 
+        // ================== TABLE CREATION ======================
+        // ========================================================
         public async Task<List<MyTask>> GetTaskAsync()
         {
             await Init();
@@ -44,6 +48,10 @@ namespace TaskNoter.Service
             await Init();
             return await TNDatabase.Table<Category>().ToListAsync();
         }
+
+
+        // ================== CRUD FOR TASKS ======================
+        // ========================================================
 
         public async Task<int> SaveTaskAsync(MyTask task)
         {
@@ -58,6 +66,17 @@ namespace TaskNoter.Service
             }
         }
 
+        public async Task<int> DeleteTaskAsync(MyTask task)
+        {
+            await Init();
+            return await TNDatabase.DeleteAsync(task);
+        }
+
+
+
+
+        // ================== CRUD FOR CATEGORY ======================
+        // ===========================================================
         public async Task<int> SaveCategoryAsync(Category category)
         {
             await Init();
@@ -71,18 +90,15 @@ namespace TaskNoter.Service
             }
         }
 
-        public async Task<int> DeleteTaskAsync(MyTask task)
-        {
-            await Init();
-            return await TNDatabase.DeleteAsync(task);
-        }
-
         public async Task<int> DeleteCategoryAsync(Category category)
         {
             await Init();
             return await TNDatabase.DeleteAsync(category);
         }
 
+
+        // ================== FUNCTION FOR STATICALLY FILLING IN CATEGORY AND TASKS ======================
+        // ===============================================================================================
         public async Task FillData()
         {
             var categories = new List<Category>

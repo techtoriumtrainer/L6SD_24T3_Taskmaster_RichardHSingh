@@ -32,6 +32,8 @@ namespace TaskNoter.MVVM.ViewModels
             LoadDBData();
         }
 
+        // ================== ADDING TASKS CODE ======================
+        // ===========================================================
         [RelayCommand]
         public async Task AddTaskAsync()
         {
@@ -44,6 +46,8 @@ namespace TaskNoter.MVVM.ViewModels
             }
         }
 
+        // ================== DELETING TASKS CODE ====================
+        // ===========================================================
         [RelayCommand]
         public async Task DeleteTaskAsync(MyTask task)
         {
@@ -55,8 +59,11 @@ namespace TaskNoter.MVVM.ViewModels
             }
         }
 
+        // ================== EDITING TASKS CODE ======================
+        // ============================================================
+
         [RelayCommand]
-        public void EditTask(MyTask task)
+        public void EditTaskAsync(MyTask task)
         {
             if (task != null)
             {
@@ -65,11 +72,24 @@ namespace TaskNoter.MVVM.ViewModels
             }
         }
 
+        // ================== SAVING TASKS CODE ======================
+        // ===========================================================
+        public async Task SaveTaskAsync(MyTask task)
+        {
+            if (task != null)
+            {
+                await _dbService.SaveTaskAsync(task);
+            }
+        }
+
         private void Tasks_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             UpdateData();
         }
 
+
+        // ================== LOADING APP WITH TASKS AND CATEGORY ======================
+        // =============================================================================
         [RelayCommand]
         
         public async Task LoadDBData()
@@ -93,7 +113,8 @@ namespace TaskNoter.MVVM.ViewModels
             UpdateData();
         }
 
-
+        // ================== UPDATE TASKS AND CATEGORY CODE ======================
+        // ========================================================================
         public void UpdateData()
         {
             foreach (var category in Categories)
@@ -101,8 +122,10 @@ namespace TaskNoter.MVVM.ViewModels
                 var tasks = Tasks.Where(t => t.CategoryId == category.Id);
                 var completed = tasks.Count(t => t.Completed);
                 var totalTasks = tasks.Count();
+                
 
                 category.PendingTasks = totalTasks - completed;
+                category.TotalTasks = totalTasks;
                 category.Percentage = totalTasks == 0 ? 0 : (float)completed / totalTasks;
             }
 

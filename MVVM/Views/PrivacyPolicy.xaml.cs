@@ -8,6 +8,8 @@ namespace TaskNoter.MVVM.Views
             AgreementCheckBox.CheckedChanged += AgreementCheckBox_CheckedChanged;
         }
 
+        // ================== CODE FOR CHECKBOX PROMPT WHEN CHECKING PRVACY POLICY ======================
+        // ==============================================================================================
         private void AgreementCheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             if (e.Value)
@@ -20,6 +22,8 @@ namespace TaskNoter.MVVM.Views
             }
         }
 
+        // ================== CODE WELCOMES USER AND TAKES USER TO MAINVIEW PAGE ======================
+        // ============================================================================================
         private async void mainPageBTn_Clicked(object sender, EventArgs e)
         {
             // Ensure the user has agreed to the privacy policy before proceeding
@@ -34,13 +38,15 @@ namespace TaskNoter.MVVM.Views
             }
         }
 
+        // ================== CODE CLOSES APP WHEN USER REJECTS PRIVACY POLICY ======================
+        // ==========================================================================================
         private void RejectBTn_Clicked(object sender, EventArgs e)
         {
-#if ANDROID || IOS
-            System.Environment.Exit(0);
-#elif WINDOWS
-                Application.Current.Quit();
-#endif
+            #if ANDROID || IOS
+                        System.Environment.Exit(0);
+            #elif WINDOWS
+                            Application.Current.Quit();
+            #endif
         }
     }
 }

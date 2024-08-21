@@ -31,5 +31,7 @@ namespace TaskNoter.MVVM.Models
         public float Percentage { get; set; }
 
         public bool IsSelected { get; set; }
+
+        public int TotalTasks { get; set; }
     }
 }
